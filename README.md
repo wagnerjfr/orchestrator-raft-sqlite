@@ -40,6 +40,7 @@ docker run --name orchestrator3 --net orchnet --ip 172.20.0.12 -p 3003:3000 \
   -e NODE1=172.20.0.10 -e NODE2=172.20.0.11 -e NODE3=172.20.0.12 \
   orchestrator:latest
 ```
+![alt text](https://github.com/wagnerjfr/orchestrator-raft/blob/master/figure1.png)
 
 ### Stopping the containers
 In another terminal run the command:
