@@ -17,7 +17,7 @@ $ docker build -t orchestrator:latest .
 ```
 
 ### Running the containers
-Open 3 terminals and run each line below in one of them
+Open 3 terminals and run each command below in one of them
 
 #### Terminal 1
 ```
