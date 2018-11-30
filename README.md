@@ -42,7 +42,9 @@ docker run --name orchestrator3 --net orchnet --ip 172.20.0.12 -p 3003:3000 \
 ```
 ### Web API (HTTP GET access)
 http://localhost:3001
+
 http://localhost:3002
+
 http://localhost:3003
 
 ![alt text](https://github.com/wagnerjfr/orchestrator-raft/blob/master/figure1.png)
