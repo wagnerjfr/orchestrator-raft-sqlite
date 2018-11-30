@@ -1,5 +1,7 @@
 # Orchestrator Raft with containers
-## Binary already compiled
+
+### Reference
+https://github.com/github/orchestrator/blob/master/docs/raft.md
 
 ### Create a Docker network
 ```
