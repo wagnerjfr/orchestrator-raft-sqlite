@@ -44,11 +44,11 @@ docker run --name orchestrator3 --net orchnet --ip 172.20.0.12 -p 3003:3000 \
 ### Stopping the containers
 In another terminal run the command:
 ```
-docker stop orchestrator1 orchestrator2 orchestrator3
+$ docker stop orchestrator1 orchestrator2 orchestrator3
 ```
 
 ### Removing the containers
 ```
-docker rm orchestrator1 orchestrator2 orchestrator3
+$ docker rm orchestrator1 orchestrator2 orchestrator3
 ```
 
