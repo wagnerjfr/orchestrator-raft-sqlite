@@ -1,5 +1,8 @@
 # Orchestrator Raft with containers
 
+Set up a orchestrator/raft cluster for high availability.
+Assuming you will run orchestrator/raft on a 3 node setup using Docker containers.
+
 ### Reference
 https://github.com/github/orchestrator/blob/master/docs/raft.md
 
@@ -14,7 +17,7 @@ $ docker build -t orchestrator:latest .
 ```
 
 ### Running the containers
-Open 3 terminals and run each line below in one of them
+Open 3 terminals and run each command below in one of them
 
 #### Terminal 1
 ```
@@ -41,11 +44,11 @@ docker run --name orchestrator3 --net orchnet --ip 172.20.0.12 -p 3003:3000 \
 ### Stopping the containers
 In another terminal run the command:
 ```
-docker stop orchestrator1 orchestrator2 orchestrator3
+$ docker stop orchestrator1 orchestrator2 orchestrator3
 ```
 
 ### Removing the containers
 ```
-docker rm orchestrator1 orchestrator2 orchestrator3
+$ docker rm orchestrator1 orchestrator2 orchestrator3
 ```
 
