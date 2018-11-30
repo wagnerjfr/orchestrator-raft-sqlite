@@ -1,7 +1,7 @@
 {
   "Debug": true,
   "EnableSyslog": false,
-  "ListenAddress": ":3000",
+  "ListenAddress": ":%ListenAddress%",
   "MySQLTopologyUser": "orc_client_user",
   "MySQLTopologyPassword": "orc_client_password",
   "MySQLTopologyCredentialsConfigFile": "",
@@ -116,5 +116,14 @@
   "OSCIgnoreHostnameFilters": [],
   "GraphiteAddr": "",
   "GraphitePath": "",
-  "GraphiteConvertHostnameDotsToUnderscores": true
+  "GraphiteConvertHostnameDotsToUnderscores": true,
+  "RaftEnabled": true,
+  "RaftDataDir": "/var/lib/orchestrator",
+  "RaftBind": "%RaftBind%",
+  "DefaultRaftPort": 10008,
+  "RaftNodes": [
+    "%RaftNode1%",
+    "%RaftNode2%",
+    "%RaftNode3%"
+  ]
 }
