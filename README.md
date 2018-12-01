@@ -13,7 +13,7 @@ $ docker network create orchnet
 
 ### Build Image
 ```
-$ docker build -t orchestrator:latest .
+$ docker build -t orchestrator-raft:latest .
 ```
 
 ### Running the containers
@@ -24,21 +24,21 @@ Open 3 terminals and run each command below in one of them
 docker run --name orchestrator1 --net orchnet --ip 172.20.0.10 -p 3001:3000 \
   -e PORT=3000 -e BIND=172.20.0.10 \
   -e NODE1=172.20.0.10 -e NODE2=172.20.0.11 -e NODE3=172.20.0.12 \
-  orchestrator:latest
+  orchestrator-raft:latest
 ```
 #### Terminal 2
 ```
 docker run --name orchestrator2 --net orchnet --ip 172.20.0.11 -p 3002:3000 \
   -e PORT=3000 -e BIND=172.20.0.11 \
   -e NODE1=172.20.0.10 -e NODE2=172.20.0.11 -e NODE3=172.20.0.12 \
-  orchestrator:latest
+  orchestrator-raft:latest
 ```
 #### Terminal 3
 ```
 docker run --name orchestrator3 --net orchnet --ip 172.20.0.12 -p 3003:3000 \
   -e PORT=3000 -e BIND=172.20.0.12 \
   -e NODE1=172.20.0.10 -e NODE2=172.20.0.11 -e NODE3=172.20.0.12 \
-  orchestrator:latest
+  orchestrator-raft:latest
 ```
 ### Web API (HTTP GET access)
 http://localhost:3001
