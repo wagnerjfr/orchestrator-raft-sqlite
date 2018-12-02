@@ -117,7 +117,7 @@
   "GraphiteAddr": "",
   "GraphitePath": "",
   "GraphiteConvertHostnameDotsToUnderscores": true,
-  "RaftEnabled": true,
+  "RaftEnabled": %RaftEnabled%,
   "RaftDataDir": "/var/lib/orchestrator",
   "RaftBind": "%RaftBind%",
   "DefaultRaftPort": 10008,
