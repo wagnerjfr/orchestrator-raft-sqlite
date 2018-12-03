@@ -51,7 +51,7 @@ http://localhost:3003
 
 ### Running one orchestrator container without raft
 ```
-docker run --name orchestrator3 --net orchnet --ip 172.20.0.12 -p 3003:3000 \
+docker run --name orchestrator1 --net orchnet -p 3003:3000 \
   -e PORT=3000 -e RAFT=false \
   orchestrator-raft:latest
 ```
