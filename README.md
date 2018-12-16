@@ -11,36 +11,60 @@ https://github.com/github/orchestrator/blob/master/docs/raft.md
 $ docker network create orchnet
 ```
 
-### Build Image
+### Building the Image
 ```
 $ docker build -t orchestrator-raft:latest .
 ```
 
 ### Running the containers
-Open 3 terminals and run each command below in one of them
+```
+for N in 1 2 3
+do docker run -d --name orchestrator$N --net orchnet --ip "172.20.0.1$N" -p "300$N":3000 \
+  -e PORT=3000 -e BIND="172.20.0.1$N" \
+  -e NODE1=172.20.0.11 -e NODE2=172.20.0.12 -e NODE3=172.20.0.13 \
+  orchestrator-raft:latest
+done
+```
+### Checking the raft status
 
-#### Terminal 1
+#### Docker logs
 ```
-docker run --name orchestrator1 --net orchnet --ip 172.20.0.10 -p 3001:3000 \
-  -e PORT=3000 -e BIND=172.20.0.10 \
-  -e NODE1=172.20.0.10 -e NODE2=172.20.0.11 -e NODE3=172.20.0.12 \
-  orchestrator-raft:latest
+docker logs orchestrator1
 ```
-#### Terminal 2
 ```
-docker run --name orchestrator2 --net orchnet --ip 172.20.0.11 -p 3002:3000 \
-  -e PORT=3000 -e BIND=172.20.0.11 \
-  -e NODE1=172.20.0.10 -e NODE2=172.20.0.11 -e NODE3=172.20.0.12 \
-  orchestrator-raft:latest
+docker logs orchestrator2
 ```
-#### Terminal 3
 ```
-docker run --name orchestrator3 --net orchnet --ip 172.20.0.12 -p 3003:3000 \
-  -e PORT=3000 -e BIND=172.20.0.12 \
-  -e NODE1=172.20.0.10 -e NODE2=172.20.0.11 -e NODE3=172.20.0.12 \
-  orchestrator-raft:latest
+docker logs orchestrator3
 ```
-### Web API (HTTP GET access)
+
+Leader logs (sample):
+```console
+[martini] Started GET /api/raft-follower-health-report/be83e368/172.20.0.12/172.20.0.12 for 172.20.0.12:50424
+[martini] Completed 200 OK in 1.482425ms
+[martini] Started GET /api/raft-follower-health-report/be83e368/172.20.0.13/172.20.0.13 for 172.20.0.13:56276
+[martini] Completed 200 OK in 1.279708ms
+2018-12-15 09:28:22 DEBUG raft leader is 172.20.0.11:10008 (this host); state: Leader
+2018-12-15 09:28:27 DEBUG raft leader is 172.20.0.11:10008 (this host); state: Leader
+2018-12-15 09:28:27 DEBUG orchestrator/raft: applying command 69: request-health-report
+```
+
+Follower logs (sample):
+```console
+2018/12/16 10:40:56 [INFO] raft: Node at 172.20.0.12:10008 [Follower] entering Follower state (Leader: "")
+2018-12-16 10:40:57 DEBUG Waiting for 15 seconds to pass before running failure detection/recovery
+2018/12/16 10:40:57 [DEBUG] raft-net: 172.20.0.12:10008 accepted connection from: 172.20.0.11:45650
+2018/12/16 10:40:58 [DEBUG] raft-net: 172.20.0.12:10008 accepted connection from: 172.20.0.11:45654
+2018/12/16 10:40:58 [DEBUG] raft: Node 172.20.0.12:10008 updated peer set (2): [172.20.0.11:10008 172.20.0.12:10008 172.20.0.13:10008]
+2018-12-16 10:40:58 DEBUG orchestrator/raft: applying command 2: leader-uri
+2018-12-16 10:40:58 DEBUG Waiting for 15 seconds to pass before running failure detection/recovery
+2018-12-16 10:40:59 DEBUG Waiting for 15 seconds to pass before running failure detection/recovery
+2018-12-16 10:41:00 DEBUG Waiting for 15 seconds to pass before running failure detection/recovery
+2018-12-16 10:41:01 DEBUG Waiting for 15 seconds to pass before running failure detection/recovery
+2018-12-16 10:41:01 DEBUG raft leader is 172.20.0.11:10008; state: Follower
+```
+
+#### Web API (HTTP GET access)
 http://localhost:3001
 
 http://localhost:3002
