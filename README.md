@@ -1,4 +1,4 @@
-# Orchestrator Raft with containers
+# Orchestrator Raft (SQLite) with containers
 
 Set up a orchestrator/raft cluster for high availability.
 Assuming you will run orchestrator/raft on a 3 node setup using Docker containers.
