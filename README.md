@@ -9,17 +9,33 @@ Each orchestrator will be using its own SQLite database locally in this setup.
 ### Reference
 https://github.com/github/orchestrator/blob/master/docs/raft.md
 
+### Clone the project
+```
+$ git clone https://github.com/wagnerjfr/orchestrator-raft-sqlite.git
+```
+
 ### Create a Docker network
 ```
 $ docker network create orchnet
 ```
 
 ### Building the Image
+Let's build the orchestrator-raft Docker image:
 ```
 $ docker build -t orchestrator-raft:latest .
 ```
+You should see a similar output if everything is ok:
+```console
+Successfully built 6d31be66c200
+Successfully tagged orchestrator-raft:latest
+```
+It's also possible to see the new image, running:
+```
+$ docker images
+```
 
 ### Running the containers
+The orchestrators containers will be started running the command:
 ```
 for N in 1 2 3
 do docker run -d --name orchestrator$N --net orchnet --ip "172.20.0.1$N" -p "300$N":3000 \
@@ -74,7 +90,7 @@ http://localhost:3002
 
 http://localhost:3003
 
-![alt text](https://github.com/wagnerjfr/orchestrator-raft/blob/master/figure1.png)
+![alt text](https://github.com/wagnerjfr/orchestrator-raft-sqlite/blob/master/figure1.png)
 
 ### Running one orchestrator container without raft
 ```
