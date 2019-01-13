@@ -9,9 +9,11 @@ Each orchestrator will be using its own SQLite database locally in this setup.
 ### Reference
 https://github.com/github/orchestrator/blob/master/docs/raft.md
 
-### Clone the project
+### Clone the project and cd into the folder
 ```
 $ git clone https://github.com/wagnerjfr/orchestrator-raft-sqlite.git
+
+$ cd orchestrator-raft-sqlite
 ```
 
 ### Create a Docker network
@@ -29,7 +31,7 @@ You should see a similar output if everything is ok:
 Successfully built 6d31be66c200
 Successfully tagged orchestrator-raft:latest
 ```
-It's also possible to see the new image, running:
+It's also possible to see the new image, executing:
 ```
 $ docker images
 ```
