@@ -132,7 +132,7 @@ docker network disconnect orchnet orchestrator1
 ```
 Check the container's logs (or the web interfaces) now. A new leader must be selected and cluster is still up and running.
 
-### Running one orchestrator container without raft
+### [Optional] Running one orchestrator container without raft
 ```
 $ docker run --name orchestrator1 --net orchnet -p 3003:3000 \
   -e PORT=3000 -e RAFT=false \
