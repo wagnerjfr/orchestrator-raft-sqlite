@@ -37,7 +37,18 @@ $ docker images
 ```
 
 ### Running the containers
-The orchestrators containers will be started running the command:
+The orchestrators containers will be started running the command (choose one of options below):
+
+- Option 1:
+```
+for N in 1 2 3
+do docker run -d --name orchestrator$N --net orchnet --ip "172.20.0.1$N" -p "300$N":3000 \
+  -e PORT=3000 -e BIND=orchestrator$N \
+  -e NODE1=orchestrator1 -e NODE2=orchestrator2 -e NODE3=orchestrator3 \
+  orchestrator-raft:latest
+done
+```
+- Option 2:
 ```
 for N in 1 2 3
 do docker run -d --name orchestrator$N --net orchnet --ip "172.20.0.1$N" -p "300$N":3000 \
@@ -46,6 +57,16 @@ do docker run -d --name orchestrator$N --net orchnet --ip "172.20.0.1$N" -p "300
   orchestrator-raft:latest
 done
 ```
+- Option 3:
+```
+for N in 1 2 3
+do docker run -d --name orchestrator$N --net orchnet -p "300$N":3000 \
+  -e PORT=3000 -e BIND=orchestrator$N \
+  -e NODE1=orchestrator1 -e NODE2=orchestrator2 -e NODE3=orchestrator3 \
+  orchestrator-raft:latest
+done
+```
+
 ### Checking the raft status
 
 #### Docker logs
@@ -118,7 +139,7 @@ $ docker exec -it master mysql -uroot -pmypass \
 ```
 You can access any of the three orchestrator web interfaces to discover this new MySQL server.
 
-Go to "Clusters -> Discover" and fill the form with the values **172.20.0.17** *(host name)* and **3306** *(port)*, to discover a new instance.
+Go to "Clusters -> Discover" and fill the form with the values **master** or **172.20.0.17** *(host name)* and **3306** *(port)*, to discover a new instance.
 
 Finally go to "Clusters -> Dashboard" to visualize the topology.
 
