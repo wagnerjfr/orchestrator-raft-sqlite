@@ -120,7 +120,7 @@ You can access any of the three orchestrator web interfaces to discover this new
 
 Go to "Clusters -> Discover" and fill the form with the values **172.20.0.17** *(host name)* and **3306** *(port)*, to discover a new instance.
 
-Finally go to "Cluster -> Dashboard" to visualize the topology.
+Finally go to "Clusters -> Dashboard" to visualize the topology.
 
 ![alt text](https://github.com/wagnerjfr/orchestrator-raft-sqlite/blob/master/figures/figure2.png)
 
