@@ -133,9 +133,9 @@ $ docker run -d --name=master --hostname=master --net orchnet --ip "172.20.0.17"
 When it's ready (check first for "healthy" status running *docker ps -a*), run the command below to grant access to the orchestrator cluster:
 ```
 $ docker exec -t master mysql -uroot -pmypass \
-  -e "CREATE USER 'orc_client_user' IDENTIFIED BY 'orc_client_password';" \
-  -e "GRANT SUPER, PROCESS, REPLICATION SLAVE, RELOAD ON *.* TO 'orc_client_user';" \
-  -e "GRANT SELECT ON mysql.slave_master_info TO 'orc_client_user';"
+  -e "CREATE USER 'orc_client_user'@'%' IDENTIFIED BY 'orc_client_password';" \
+  -e "GRANT SUPER, PROCESS, REPLICATION SLAVE, RELOAD ON *.* TO 'orc_client_user'@'%';" \
+  -e "GRANT SELECT ON mysql.slave_master_info TO 'orc_client_user'@'%';"
 ```
 You can access any of the three orchestrator web interfaces to discover this new MySQL server.
 
