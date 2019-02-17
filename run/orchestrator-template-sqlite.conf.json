@@ -122,8 +122,6 @@
   "RaftBind": "%RaftBind%",
   "DefaultRaftPort": 10008,
   "RaftNodes": [
-    "%RaftNode1%",
-    "%RaftNode2%",
-    "%RaftNode3%"
+    %RaftNodes%
   ]
 }
