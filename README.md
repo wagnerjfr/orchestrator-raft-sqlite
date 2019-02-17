@@ -44,7 +44,7 @@ The orchestrators containers will be started running the command (choose one of 
 for N in 1 2 3
 do docker run -d --name orchestrator$N --net orchnet --ip "172.20.0.1$N" -p "300$N":3000 \
   -e PORT=3000 -e BIND=orchestrator$N \
-  -e RAFT_NODES="\"orchestrator1"\","\"orchestrator2"\","\"orchestrator3"\" \
+  -e RAFT_NODES='"orchestrator1","orchestrator2","orchestrator3"' \
   orchestrator-raft:latest
 done
 ```
@@ -53,7 +53,7 @@ done
 for N in 1 2 3
 do docker run -d --name orchestrator$N --net orchnet --ip "172.20.0.1$N" -p "300$N":3000 \
   -e PORT=3000 -e BIND="172.20.0.1$N" \
-  -e RAFT_NODES="\"172.20.0.11"\","\"172.20.0.12"\","\"172.20.0.13"\" \
+  -e RAFT_NODES='"172.20.0.11","172.20.0.12","172.20.0.13"' \
   orchestrator-raft:latest
 done
 ```
@@ -62,7 +62,7 @@ done
 for N in 1 2 3
 do docker run -d --name orchestrator$N --net orchnet -p "300$N":3000 \
   -e PORT=3000 -e BIND=orchestrator$N \
-  -e RAFT_NODES="\"orchestrator1"\","\"orchestrator2"\","\"orchestrator3"\" \
+  -e RAFT_NODES='"orchestrator1","orchestrator2","orchestrator3"' \
   orchestrator-raft:latest
 done
 ```
