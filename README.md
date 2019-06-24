@@ -9,19 +9,20 @@ Each orchestrator will be using its own embedded SQLite database in this setup.
 ### Reference
 https://github.com/github/orchestrator/blob/master/docs/raft.md
 
-### Clone the project and cd into the folder
+### Steps
+#### 1. Clone the project and cd into the folder
 ```
 $ git clone https://github.com/wagnerjfr/orchestrator-raft-sqlite.git
 
 $ cd orchestrator-raft-sqlite
 ```
 
-### Create a Docker network
+#### 2. Create a Docker network
 ```
 $ docker network create orchnet
 ```
 
-### Building the Image
+#### 3. Building the Image
 Let's build the orchestrator-raft Docker image:
 ```
 $ docker build -t orchestrator-raft:latest .
@@ -36,8 +37,8 @@ It's also possible to see the new image, executing:
 $ docker images
 ```
 
-### Running the containers
-The orchestrators containers will be started running the command (choose one of options below):
+#### 4. Running the containers
+The orchestrators containers will be started running the command (choose **one** of options below):
 
 - Option 1:
 ```
@@ -67,9 +68,9 @@ do docker run -d --name orchestrator$N --net orchnet -p "300$N":3000 \
 done
 ```
 
-### Checking the raft status
+#### 5. Checking the raft status
 
-#### Docker logs
+##### Docker logs
 ```
 $ docker logs orchestrator1
 ```
@@ -106,7 +107,7 @@ Follower logs (sample):
 2018-12-16 10:41:01 DEBUG raft leader is 172.20.0.11:10008; state: Follower
 ```
 
-#### Web API (HTTP GET access)
+##### Web API (HTTP GET access)
 http://localhost:3001
 
 http://localhost:3002
@@ -115,7 +116,7 @@ http://localhost:3003
 
 ![alt text](https://github.com/wagnerjfr/orchestrator-raft-sqlite/blob/master/figures/figure1.png)
 
-### Create a new MySQL container to be monitored by the cluster
+#### 6. Create a new MySQL container to be monitored by the cluster
 
 P.S: These two project [Replication with Docker MySQL Images](https://github.com/wagnerjfr/mysql-master-slaves-replication-docker) and [Orchestrator and Replication topology using Docker containers](https://github.com/wagnerjfr/orchestrator-mysql-replication-docker) explain how to setup a MySQL master slave(s) replication topology.
 
@@ -145,7 +146,7 @@ Finally go to "Clusters -> Dashboard" to visualize the topology.
 
 ![alt text](https://github.com/wagnerjfr/orchestrator-raft-sqlite/blob/master/figures/figure2.png)
 
-### Fault tolerance scenario
+#### 7. Fault tolerance scenario
 
 Since Docker allows us to disconnect a container from a network by just running one command, we can disconnect now orchestrator1 (possibly the leader) from the groupnet network by running:
 ```
@@ -153,7 +154,7 @@ docker network disconnect orchnet orchestrator1
 ```
 Check the container's logs (or the web interfaces) now. A new leader must be selected and cluster is still up and running.
 
-### [Optional] Running one orchestrator container without raft
+#### 8. [Optional] Running one orchestrator container without raft
 ```
 $ docker run --name orchestrator1 --net orchnet -p 3003:3000 \
   -e PORT=3000 -e RAFT=false \
