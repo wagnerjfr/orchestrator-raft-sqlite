@@ -70,7 +70,7 @@ done
 
 #### 5. Checking the raft status
 
-##### Docker logs
+##### 5.1. Docker logs
 ```
 $ docker logs orchestrator1
 ```
@@ -107,7 +107,8 @@ Follower logs (sample):
 2018-12-16 10:41:01 DEBUG raft leader is 172.20.0.11:10008; state: Follower
 ```
 
-##### Web API (HTTP GET access)
+##### 5.2. Web API (HTTP GET access)
+
 http://localhost:3001
 
 http://localhost:3002
