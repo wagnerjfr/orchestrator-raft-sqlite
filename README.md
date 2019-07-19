@@ -151,7 +151,7 @@ Finally go to "Clusters -> Dashboard" to visualize the topology.
 
 Since Docker allows us to disconnect a container from a network by just running one command, we can disconnect now orchestrator1 (possibly the leader) from the groupnet network by running:
 ```
-docker network disconnect orchnet orchestrator1
+$ docker network disconnect orchnet orchestrator1
 ```
 Check the container's logs (or the web interfaces) now. A new leader must be selected and cluster is still up and running.
 
