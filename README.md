@@ -32,13 +32,13 @@ You should see a similar output if everything is ok:
 Successfully built 6d31be66c200
 Successfully tagged orchestrator-raft:latest
 ```
-It's also possible to see the new image, executing:
+It's also possible to see the new image executing:
 ```
 $ docker images
 ```
 
 #### 4. Running the containers
-The orchestrators containers will be started running the command (choose **one** of options below):
+The orchestrator containers will be started running the command (**choose one** of options below):
 
 - Option 1:
 ```
