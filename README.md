@@ -6,7 +6,7 @@ You will run orchestrator/raft on a 3 node setup using Docker containers.
 
 Each orchestrator will be using its own embedded SQLite database in this setup.
 
-### Reference
+### References
 https://github.com/github/orchestrator/blob/master/docs/raft.md
 
 ### Steps
