@@ -23,7 +23,7 @@ $ docker network create orchnet
 ```
 
 #### 3. Building the Image
-Let's build the orchestrator-raft Docker image:
+Let's build the ***orchestrator-raft*** Docker image:
 ```
 $ docker build -t orchestrator-raft:latest .
 ```
