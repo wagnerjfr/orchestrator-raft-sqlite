@@ -8,6 +8,7 @@ script:
   - docker images
   - bash ./travis-ci/create_orch_cluster.sh
   - docker ps -a
+  - sleep 10
   - bash ./travis-ci/validate.sh
 after_script:
   - docker stop orchestrator1 orchestrator2 orchestrator3
