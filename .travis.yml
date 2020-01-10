@@ -2,7 +2,7 @@ language: bash
 services:
   - docker
 before_script:
-  - docker build -t orchestrator-raft:latest .
+  - docker build -t $DOCKER_USERNAME/orchestrator-raft:1.0 .
   - docker network create orchnet
 script:
   - docker images
@@ -10,6 +10,8 @@ script:
   - docker ps -a
   - sleep 10
   - bash ./travis-ci/validate.sh
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push $DOCKER_USERNAME/orchestrator-raft:1.0
 after_script:
   - docker stop orchestrator1 orchestrator2 orchestrator3
   - docker rm orchestrator1 orchestrator2 orchestrator3
