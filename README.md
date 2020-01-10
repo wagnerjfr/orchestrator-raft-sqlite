@@ -27,7 +27,7 @@ $ docker network create orchnet
 #### 3. Building the Image
 Let's build the ***orchestrator-raft*** Docker image:
 ```
-$ docker build -t orchestrator-raft:latest .
+$ docker build -t wagnerfranchin/orchestrator-raft:1.0 .
 ```
 You should see a similar output if everything is ok:
 ```console
@@ -48,7 +48,7 @@ for N in 1 2 3
 do docker run -d --name orchestrator$N --net orchnet --ip "172.20.0.1$N" -p "300$N":3000 \
   -e PORT=3000 -e BIND=orchestrator$N \
   -e RAFT_NODES='"orchestrator1","orchestrator2","orchestrator3"' \
-  orchestrator-raft:latest
+  wagnerfranchin/orchestrator-raft:1.0
 done
 ```
 - Option 2:
@@ -57,7 +57,7 @@ for N in 1 2 3
 do docker run -d --name orchestrator$N --net orchnet --ip "172.20.0.1$N" -p "300$N":3000 \
   -e PORT=3000 -e BIND="172.20.0.1$N" \
   -e RAFT_NODES='"172.20.0.11","172.20.0.12","172.20.0.13"' \
-  orchestrator-raft:latest
+  wagnerfranchin/orchestrator-raft:1.0
 done
 ```
 - Option 3:
@@ -66,7 +66,7 @@ for N in 1 2 3
 do docker run -d --name orchestrator$N --net orchnet -p "300$N":3000 \
   -e PORT=3000 -e BIND=orchestrator$N \
   -e RAFT_NODES='"orchestrator1","orchestrator2","orchestrator3"' \
-  orchestrator-raft:latest
+  wagnerfranchin/orchestrator-raft:1.0
 done
 ```
 
@@ -161,7 +161,7 @@ Check the container's logs (or the web interfaces) now. A new leader must be sel
 ```
 $ docker run --name orchestrator1 --net orchnet -p 3003:3000 \
   -e PORT=3000 -e RAFT=false \
-  orchestrator-raft:latest
+  wagnerfranchin/orchestrator-raft:1.0
 ```
 
 ### Stopping the containers
