@@ -15,12 +15,12 @@ https://github.com/github/orchestrator/blob/master/docs/raft.md
 #### 1. Getting the Docker image
 
 Here we have 2 options:
-* Pull the already built and ready to use Docker image from DockerHub
+* Pull the already built and ready to use Docker image from [Docker Hub](https://hub.docker.com/r/wagnerfranchin/orchestrator-raft)
 * Clone the project and build the image locally
 
 ##### Option 1: Pull the Docker image from DockerHub
 ```
-git pull wagnerfranchin/orchestrator-raft:1.0
+git pull wagnerfranchin/orchestrator-raft:latest
 ```
 
 ##### Option 2: Clone the project and build it locally
@@ -32,12 +32,12 @@ $ cd orchestrator-raft-sqlite
 
 Let's build the ***orchestrator-raft*** Docker image:
 ```
-$ docker build -t wagnerfranchin/orchestrator-raft:1.0 .
+$ docker build -t wagnerfranchin/orchestrator-raft:latest .
 ```
 You should see a similar output if everything is ok:
 ```console
 Successfully built 6d31be66c200
-Successfully tagged wagnerfranchin/orchestrator-raft:1.0
+Successfully tagged wagnerfranchin/orchestrator-raft:latest
 ```
 It's also possible to see the new image executing:
 ```
@@ -58,7 +58,7 @@ for N in 1 2 3
 do docker run -d --name orchestrator$N --net orchnet --ip "172.20.0.1$N" -p "300$N":3000 \
   -e PORT=3000 -e BIND=orchestrator$N \
   -e RAFT_NODES='"orchestrator1","orchestrator2","orchestrator3"' \
-  wagnerfranchin/orchestrator-raft:1.0
+  wagnerfranchin/orchestrator-raft:latest
 done
 ```
 - Option 2:
@@ -67,7 +67,7 @@ for N in 1 2 3
 do docker run -d --name orchestrator$N --net orchnet --ip "172.20.0.1$N" -p "300$N":3000 \
   -e PORT=3000 -e BIND="172.20.0.1$N" \
   -e RAFT_NODES='"172.20.0.11","172.20.0.12","172.20.0.13"' \
-  wagnerfranchin/orchestrator-raft:1.0
+  wagnerfranchin/orchestrator-raft:latest
 done
 ```
 - Option 3:
@@ -76,7 +76,7 @@ for N in 1 2 3
 do docker run -d --name orchestrator$N --net orchnet -p "300$N":3000 \
   -e PORT=3000 -e BIND=orchestrator$N \
   -e RAFT_NODES='"orchestrator1","orchestrator2","orchestrator3"' \
-  wagnerfranchin/orchestrator-raft:1.0
+  wagnerfranchin/orchestrator-raft:latest
 done
 ```
 
@@ -171,7 +171,7 @@ Check the container's logs (or the web interfaces) now. A new leader must be sel
 ```
 $ docker run --name orchestrator1 --net orchnet -p 3003:3000 \
   -e PORT=3000 -e RAFT=false \
-  wagnerfranchin/orchestrator-raft:1.0
+  wagnerfranchin/orchestrator-raft:latest
 ```
 
 ### Stopping the containers
