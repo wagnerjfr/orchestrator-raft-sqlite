@@ -179,3 +179,8 @@ $ docker rm orchestrator1 orchestrator2 orchestrator3 master
 ```
 $ sudo rm -rf dbMaster
 ```
+
+### Removing Docker image
+```
+$ docker rmi wagnerfranchin/orchestrator-raft:latest
+```
