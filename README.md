@@ -163,24 +163,25 @@ $ docker run --name orchestrator1 --net orchnet -p 3003:3000 \
   -e PORT=3000 -e RAFT=false \
   wagnerfranchin/orchestrator-raft:latest
 ```
+#### 8. Cleanup
 
-### Stopping the containers
+##### Stopping the containers
 In another terminal run the command:
 ```
 $ docker stop orchestrator1 orchestrator2 orchestrator3 master
 ```
 
-### Removing stopped the containers
+##### Removing stopped the containers
 ```
 $ docker rm orchestrator1 orchestrator2 orchestrator3 master
 ```
 
-### Removing MySQL data directories
+##### Removing MySQL data directories
 ```
 $ sudo rm -rf dbMaster
 ```
 
-### Removing Docker image
+##### Removing Docker image
 ```
 $ docker rmi wagnerfranchin/orchestrator-raft:latest
 ```
