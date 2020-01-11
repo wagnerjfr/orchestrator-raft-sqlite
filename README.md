@@ -111,11 +111,11 @@ Follower logs (sample):
 
 ##### 5.2. Web API (HTTP GET access)
 
-http://localhost:3001
+http://localhost:3001/web/status
 
-http://localhost:3002
+http://localhost:3002/web/status
 
-http://localhost:3003
+http://localhost:3003/web/status
 
 ![alt text](https://github.com/wagnerjfr/orchestrator-raft-sqlite/blob/master/figures/figure1.png)
 
