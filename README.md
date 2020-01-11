@@ -12,11 +12,26 @@ Each orchestrator will be using its own embedded SQLite database in this setup.
 https://github.com/github/orchestrator/blob/master/docs/raft.md
 
 ### Steps
-#### 1. Clone the project and cd into the folder
+#### 1. Getting the Docker image
+
+Here we have 2 options:
+* Pull the already built and ready to use Docker image from [Docker Hub](https://hub.docker.com/r/wagnerfranchin/orchestrator-raft)
+* Clone the project and build the image locally
+
+##### Option 1: Pull the Docker image from DockerHub
+```
+$ docker pull wagnerfranchin/orchestrator-raft:latest
+```
+
+##### Option 2: Clone the project and build it locally
 ```
 $ git clone https://github.com/wagnerjfr/orchestrator-raft-sqlite.git
 
 $ cd orchestrator-raft-sqlite
+
+$ docker build -t wagnerfranchin/orchestrator-raft:latest .
+
+$ docker images
 ```
 
 #### 2. Create a Docker network
@@ -24,22 +39,7 @@ $ cd orchestrator-raft-sqlite
 $ docker network create orchnet
 ```
 
-#### 3. Building the Image
-Let's build the ***orchestrator-raft*** Docker image:
-```
-$ docker build -t orchestrator-raft:latest .
-```
-You should see a similar output if everything is ok:
-```console
-Successfully built 6d31be66c200
-Successfully tagged orchestrator-raft:latest
-```
-It's also possible to see the new image executing:
-```
-$ docker images
-```
-
-#### 4. Running the containers
+#### 3. Running the containers
 The orchestrator containers will be started running the command (**choose one** of options below):
 
 - Option 1:
@@ -48,7 +48,7 @@ for N in 1 2 3
 do docker run -d --name orchestrator$N --net orchnet --ip "172.20.0.1$N" -p "300$N":3000 \
   -e PORT=3000 -e BIND=orchestrator$N \
   -e RAFT_NODES='"orchestrator1","orchestrator2","orchestrator3"' \
-  orchestrator-raft:latest
+  wagnerfranchin/orchestrator-raft:latest
 done
 ```
 - Option 2:
@@ -57,7 +57,7 @@ for N in 1 2 3
 do docker run -d --name orchestrator$N --net orchnet --ip "172.20.0.1$N" -p "300$N":3000 \
   -e PORT=3000 -e BIND="172.20.0.1$N" \
   -e RAFT_NODES='"172.20.0.11","172.20.0.12","172.20.0.13"' \
-  orchestrator-raft:latest
+  wagnerfranchin/orchestrator-raft:latest
 done
 ```
 - Option 3:
@@ -66,13 +66,13 @@ for N in 1 2 3
 do docker run -d --name orchestrator$N --net orchnet -p "300$N":3000 \
   -e PORT=3000 -e BIND=orchestrator$N \
   -e RAFT_NODES='"orchestrator1","orchestrator2","orchestrator3"' \
-  orchestrator-raft:latest
+  wagnerfranchin/orchestrator-raft:latest
 done
 ```
 
-#### 5. Checking the raft status
+#### 4. Checking the raft status
 
-##### 5.1. Docker logs
+##### 4.1. Docker logs
 ```
 $ docker logs orchestrator1
 ```
@@ -109,7 +109,7 @@ Follower logs (sample):
 2018-12-16 10:41:01 DEBUG raft leader is 172.20.0.11:10008; state: Follower
 ```
 
-##### 5.2. Web API (HTTP GET access)
+##### 4.2. Web API (HTTP GET access)
 
 http://localhost:3001/web/status
 
@@ -119,7 +119,7 @@ http://localhost:3003/web/status
 
 ![alt text](https://github.com/wagnerjfr/orchestrator-raft-sqlite/blob/master/figures/figure1.png)
 
-#### 6. Create a new MySQL container to be monitored by the cluster
+#### 5. Create a new MySQL container to be monitored by the cluster
 
 P.S: These two project [Replication with Docker MySQL Images](https://github.com/wagnerjfr/mysql-master-slaves-replication-docker) and [Orchestrator and Replication topology using Docker containers](https://github.com/wagnerjfr/orchestrator-mysql-replication-docker) explain how to setup a MySQL master slave(s) replication topology.
 
@@ -149,7 +149,7 @@ Finally go to "Clusters ➡ Dashboard" to visualize the topology.
 
 ![alt text](https://github.com/wagnerjfr/orchestrator-raft-sqlite/blob/master/figures/figure2.png)
 
-#### 7. Fault tolerance scenario
+#### 6. Fault tolerance scenario
 
 Since Docker allows us to disconnect a container from a network by just running one command, we can disconnect now orchestrator1 (possibly the leader) from the groupnet network by running:
 ```
@@ -157,25 +157,31 @@ $ docker network disconnect orchnet orchestrator1
 ```
 Check the container's logs (or the web interfaces) now. A new leader must be selected and cluster is still up and running.
 
-#### 8. [Optional] Running one orchestrator container without raft
+#### 7. [Optional] Running one orchestrator container without raft
 ```
 $ docker run --name orchestrator1 --net orchnet -p 3003:3000 \
   -e PORT=3000 -e RAFT=false \
-  orchestrator-raft:latest
+  wagnerfranchin/orchestrator-raft:latest
 ```
+#### 8. Cleanup
 
-### Stopping the containers
+##### Stopping the containers
 In another terminal run the command:
 ```
 $ docker stop orchestrator1 orchestrator2 orchestrator3 master
 ```
 
-### Removing stopped the containers
+##### Removing stopped the containers
 ```
 $ docker rm orchestrator1 orchestrator2 orchestrator3 master
 ```
 
-### Removing MySQL data directories
+##### Removing MySQL data directories
 ```
 $ sudo rm -rf dbMaster
+```
+
+##### Removing Docker image
+```
+$ docker rmi wagnerfranchin/orchestrator-raft:latest
 ```

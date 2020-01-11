@@ -2,6 +2,9 @@
 
 set -x;
 
+LEADER=0
+FOLLOWERS=0
+
 for N in 1 2 3
 do
   RESULT=$(curl --write-out " %{http_code}" "http://localhost:300$N/api/leader-check" 2> /dev/null)
@@ -10,14 +13,23 @@ do
   REGEX=" 200$"
   if [[ "$RESULT" =~ $REGEX ]]; then
       echo "Health check passed, is leader"
+      LEADER=1
   else
       REGEX="Not leader"
       if [[ "$RESULT" =~ $REGEX ]]; then
           echo "Health check passed, not leader"
+          FOLLOWERS=$(($FOLLOWERS + 1))
       else
           echo "Health check failed (didn't return HTTP 200 or 'Not leader')"
           exit 1
       fi
   fi
 done
-exit 0
+
+if [ $LEADER == 1 ] && [ $FOLLOWERS == 2 ]; then
+    echo "Test check passed!"
+    exit 0
+else
+    echo "Test check failed.."
+    exit 1
+fi
