@@ -25,7 +25,7 @@ RUN git clone https://github.com/github/orchestrator.git $ORCHGIT
 
 WORKDIR $ORCHPATH/$ORCHGIT
 RUN ./script/build
-RUN cp bin/orchestrator $ORCHPATH
+RUN cp -rf bin/orchestrator bin/resources $ORCHPATH
 RUN cd .. && rm -rf $ORCHGIT
 
 WORKDIR $ORCHPATH/

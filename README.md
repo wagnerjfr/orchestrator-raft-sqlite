@@ -20,7 +20,7 @@ Here we have 2 options:
 
 ##### Option 1: Pull the Docker image from DockerHub
 ```
-git pull wagnerfranchin/orchestrator-raft:latest
+$ docker pull wagnerfranchin/orchestrator-raft:latest
 ```
 
 ##### Option 2: Clone the project and build it locally
@@ -28,19 +28,9 @@ git pull wagnerfranchin/orchestrator-raft:latest
 $ git clone https://github.com/wagnerjfr/orchestrator-raft-sqlite.git
 
 $ cd orchestrator-raft-sqlite
-```
 
-Let's build the ***orchestrator-raft*** Docker image:
-```
 $ docker build -t wagnerfranchin/orchestrator-raft:latest .
-```
-You should see a similar output if everything is ok:
-```console
-Successfully built 6d31be66c200
-Successfully tagged wagnerfranchin/orchestrator-raft:latest
-```
-It's also possible to see the new image executing:
-```
+
 $ docker images
 ```
 
