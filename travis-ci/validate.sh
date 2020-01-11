@@ -3,6 +3,7 @@
 set -x;
 
 LEADER=0
+FOLLOWERS=0
 
 for N in 1 2 3
 do
@@ -17,16 +18,18 @@ do
       REGEX="Not leader"
       if [[ "$RESULT" =~ $REGEX ]]; then
           echo "Health check passed, not leader"
+          FOLLOWERS=$(($FOLLOWERS + 1))
       else
           echo "Health check failed (didn't return HTTP 200 or 'Not leader')"
           exit 1
       fi
   fi
 done
-if  [[ $LEADER == 1 ]]
-    echo "Test check passed"
+
+if [ $LEADER == 1 ] && [ $FOLLOWERS == 2 ]; then
+    echo "Test check passed!"
     exit 0
 else
-    echo "Test check failed"
+    echo "Test check failed.."
     exit 1
 fi
