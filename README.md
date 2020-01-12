@@ -134,7 +134,7 @@ $ docker run -d --name=master --hostname=master --net orchnet --ip "172.20.0.17"
   --gtid-mode='ON' \
   --log-bin='mysql-bin-1.log'
 ```
-When it's ready (check first for "healthy" status running *docker ps -a*), run the command below to grant access to the orchestrator cluster:
+When it's ready (check first for `healthy` status running `docker ps -a`), run the command below to grant access to the orchestrator cluster:
 ```
 $ docker exec -t master mysql -uroot -pmypass \
   -e "CREATE USER 'orc_client_user'@'%' IDENTIFIED BY 'orc_client_password';" \
