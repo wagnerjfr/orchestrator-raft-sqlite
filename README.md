@@ -121,7 +121,7 @@ http://localhost:3003/web/status
 
 #### 5. Create a new MySQL container to be monitored by the cluster
 
-P.S: These two project [Replication with Docker MySQL Images](https://github.com/wagnerjfr/mysql-master-slaves-replication-docker) and [Orchestrator and Replication topology using Docker containers](https://github.com/wagnerjfr/orchestrator-mysql-replication-docker) explain how to setup a MySQL master slave(s) replication topology.
+***P.S:*** These two project [Replication with Docker MySQL Images](https://github.com/wagnerjfr/mysql-master-slaves-replication-docker) and [Orchestrator and Replication topology using Docker containers](https://github.com/wagnerjfr/orchestrator-mysql-replication-docker) explain how to setup a MySQL master slave(s) replication topology.
 
 Starting the container:
 ```
