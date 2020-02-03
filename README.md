@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/wagnerjfr/orchestrator-raft-sqlite.svg?branch=master)](https://travis-ci.org/wagnerjfr/orchestrator-raft-sqlite)
 
-# Orchestrator Raft (SQLite) with containers
+# Orchestrator Raft (SQLite) with containers :robot:
 
 Let's set up an orchestrator/raft cluster for high availability.
 
