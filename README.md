@@ -42,7 +42,7 @@ $ docker network create orchnet
 #### 3. Running the containers
 The orchestrator containers will be started running the command (**choose one** of options below):
 
-- Option 1:
+- *Option 1*:
 ```
 for N in 1 2 3
 do docker run -d --name orchestrator$N --net orchnet --ip "172.20.0.1$N" -p "300$N":3000 \
@@ -51,7 +51,7 @@ do docker run -d --name orchestrator$N --net orchnet --ip "172.20.0.1$N" -p "300
   wagnerfranchin/orchestrator-raft:latest
 done
 ```
-- Option 2:
+- *Option 2*:
 ```
 for N in 1 2 3
 do docker run -d --name orchestrator$N --net orchnet --ip "172.20.0.1$N" -p "300$N":3000 \
@@ -60,7 +60,7 @@ do docker run -d --name orchestrator$N --net orchnet --ip "172.20.0.1$N" -p "300
   wagnerfranchin/orchestrator-raft:latest
 done
 ```
-- Option 3:
+- *Option 3*:
 ```
 for N in 1 2 3
 do docker run -d --name orchestrator$N --net orchnet -p "300$N":3000 \
