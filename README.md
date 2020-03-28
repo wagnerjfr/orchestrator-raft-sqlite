@@ -6,7 +6,7 @@ Let's set up an orchestrator/raft cluster for high availability.
 
 We will run orchestrator/raft on a 3 node setup using Docker containers.
 
-Each orchestrator will be using its own embedded SQLite database in this setup.
+Each orchestrator will be using its own embedded [SQLite](https://www.sqlite.org/index.html) database in this setup.
 
 ### References
 https://github.com/github/orchestrator/blob/master/docs/raft.md
