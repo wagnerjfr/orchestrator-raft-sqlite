@@ -83,7 +83,7 @@ $ docker logs orchestrator2
 $ docker logs orchestrator3
 ```
 
-Leader logs (sample):
+*Leader logs (sample):*
 ```console
 [martini] Started GET /api/raft-follower-health-report/be83e368/172.20.0.12/172.20.0.12 for 172.20.0.12:50424
 [martini] Completed 200 OK in 1.482425ms
@@ -94,7 +94,7 @@ Leader logs (sample):
 2018-12-15 09:28:27 DEBUG orchestrator/raft: applying command 69: request-health-report
 ```
 
-Follower logs (sample):
+*Follower logs (sample):*
 ```console
 2018/12/16 10:40:56 [INFO] raft: Node at 172.20.0.12:10008 [Follower] entering Follower state (Leader: "")
 2018-12-16 10:40:57 DEBUG Waiting for 15 seconds to pass before running failure detection/recovery
