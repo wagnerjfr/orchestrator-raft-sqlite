@@ -2,7 +2,7 @@
 
 # Orchestrator Raft (SQLite) with containers :robot:
 
-Let's set up an orchestrator/raft cluster for high availability.
+Let's set up an **orchestrator/raft cluster** for high availability.
 
 We will run orchestrator/raft on a 3 node setup using Docker containers.
 
