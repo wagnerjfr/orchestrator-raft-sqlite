@@ -166,14 +166,10 @@ $ docker run --name orchestrator1 --net orchnet -p 3003:3000 \
 #### 8. Cleanup
 
 ##### Stopping the containers
-In another terminal run the command:
-```
-$ docker stop orchestrator1 orchestrator2 orchestrator3 master
-```
 
-##### Removing stopped the containers
+##### Stopping and removing the containers
 ```
-$ docker rm orchestrator1 orchestrator2 orchestrator3 master
+$ docker rm -f orchestrator1 orchestrator2 orchestrator3 master
 ```
 
 ##### Removing MySQL data directories

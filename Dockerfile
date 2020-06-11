@@ -1,4 +1,4 @@
-FROM oraclelinux:7-slim
+FROM oraclelinux:7-slim as build
 
 RUN yum update -y && yum clean all
 
@@ -18,8 +18,6 @@ RUN yum install -y \
   golang \
   && yum clean all
 
-ENV PORT=3000
-ENV RAFT=true
 ENV ORCHPATH=/usr/local/orchestrator
 ENV ORCHGIT=orchestrator-git
 
@@ -32,7 +30,16 @@ RUN ./script/build
 RUN cp -rf bin/orchestrator bin/resources $ORCHPATH
 RUN cd .. && rm -rf $ORCHGIT
 
+FROM oraclelinux:7-slim
+
+ENV PORT=3000
+ENV RAFT=true
+
+ENV ORCHPATH=/usr/local/orchestrator
+
+COPY --from=build /usr/local/orchestrator $ORCHPATH
+
 WORKDIR $ORCHPATH/
-COPY run/ $ORCHPATH/
+COPY run/ .
 ADD docker/entrypoint.sh /entrypoint.sh
 CMD /entrypoint.sh
