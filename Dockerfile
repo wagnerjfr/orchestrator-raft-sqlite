@@ -14,6 +14,10 @@ RUN yum install -y \
   oracle-golang-release-el7 \
   && yum clean all
 
+RUN yum install -y \
+  golang \
+  && yum clean all
+
 ENV PORT=3000
 ENV RAFT=true
 ENV ORCHPATH=/usr/local/orchestrator
