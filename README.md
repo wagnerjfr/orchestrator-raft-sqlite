@@ -165,19 +165,17 @@ $ docker run --name orchestrator1 --net orchnet -p 3003:3000 \
 ```
 #### 8. Cleanup
 
-##### Stopping the containers
-
-##### Stopping and removing the containers
+##### To stop and remove the containers
 ```
 $ docker rm -f orchestrator1 orchestrator2 orchestrator3 master
 ```
 
-##### Removing MySQL data directories
+##### To remove MySQL data directories
 ```
 $ sudo rm -rf dbMaster
 ```
 
-##### Removing Docker image
+##### To remove the Docker image
 ```
 $ docker rmi wagnerfranchin/orchestrator-raft:latest
 ```
