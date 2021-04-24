@@ -26,6 +26,7 @@ WORKDIR $ORCHPATH
 RUN git clone https://github.com/github/orchestrator.git $ORCHGIT
 
 WORKDIR $ORCHPATH/$ORCHGIT
+RUN go env -w GO111MODULE=auto
 RUN ./script/build
 RUN cp -rf bin/orchestrator bin/resources $ORCHPATH
 RUN cd .. && rm -rf $ORCHGIT
