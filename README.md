@@ -36,7 +36,7 @@ $ docker images
 
 #### 2. Create a Docker network
 ```
-$ docker network create orchnet
+$ docker network create --driver=bridge --subnet=172.20.0.0/16 orchnet
 ```
 
 #### 3. Running the containers
