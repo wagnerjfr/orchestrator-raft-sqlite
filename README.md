@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/wagnerjfr/orchestrator-raft-sqlite.svg?branch=master)](https://travis-ci.com/wagnerjfr/orchestrator-raft-sqlite)
 
-# Orchestrator Raft (SQLite) with containers
+# Setting up Orchestrator/Raft cluster with SQLite as backend serves using Docker containers
 
 Let's set up an **orchestrator/raft cluster** for high availability.
 
