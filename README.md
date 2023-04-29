@@ -11,6 +11,8 @@ Each orchestrator will be using its own embedded [SQLite](https://www.sqlite.org
 ### References
 https://github.com/github/orchestrator/blob/master/docs/raft.md
 
+[Setting up Orchestrator/Raft cluster with MySQL as backend serves using Docker containers](https://medium.com/@wagner.franchin/setting-up-orchestrator-raft-cluster-with-mysql-as-backend-serves-using-docker-containers-a79869d36516)
+
 ### Steps
 #### 1. Getting the Docker image
 
